@@ -4,18 +4,22 @@ import { RouterLink } from "vue-router"
 
 <template>
 	<div>
-		<nav>
-			<RouterLink class="bottom-line" to="/">Home</RouterLink>
-			<RouterLink class="bottom-line" to="/bmi">BMI</RouterLink>
-			<RouterLink class="bottom-line" to="/todo-simple">todosimple</RouterLink>
-		</nav>
+		<nav><RouterLink to="/" class="title">Vue3練習</RouterLink></nav>
 		<router-view />
 	</div>
 </template>
 
 <style>
+.title {
+	font-weight: 700;
+	font-size: x-large;
+	color: white;
+}
+
 nav {
 	padding: 20px;
+	background-color: #424242;
+	margin-bottom: 20px;
 	box-shadow: 0px 0px 3px;
 }
 .bottom-line {

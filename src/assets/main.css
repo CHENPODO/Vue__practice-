@@ -21,7 +21,6 @@ a,
 	a:hover {
 		border: none;
 		border-radius: 5px;
-		background-color: hsla(0, 1%, 69%, 0.581);
 	}
 	a:hover::after {
 		border: 1px;

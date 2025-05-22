@@ -19,7 +19,8 @@ onMounted(() => {
 </script>
 
 <template>
-	<h1>BMI</h1>
+	<h1 class="label">BMI</h1>
+	<h2>BMI</h2>
 	<p class="notic">注意身高要換算成公尺</p>
 	<div class="container">
 		<div class="screen">
@@ -46,12 +47,31 @@ onMounted(() => {
 	</div>
 </template>
 
-<style>
+<style scoped>
 body {
 	background-color: rgba(0, 0, 0, 0.092);
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-h1 {
+.label {
+	margin-left: 20px;
+	font-size: 24px;
+	font-weight: bold;
+	position: relative;
+	color: #516b7e;
+	margin-bottom: 12px;
+}
+.label::after {
+	content: "";
+	position: absolute;
+	left: -7px;
+	top: 5px;
+	height: 23px;
+	width: 3px;
+	border-radius: 2px;
+	background-color: #516b7e;
+	border: #5d7d94 1px solid;
+}
+h2 {
 	text-align: center;
 }
 .notic {
