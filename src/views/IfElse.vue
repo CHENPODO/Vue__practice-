@@ -18,6 +18,7 @@ const nextBook = () => {
 </script>
 
 <template>
+	<h1 class="label">V指令</h1>
 	<div class="box">
 		<h2>基本</h2>
 		<p>v-if v-else-if v-else</p>
@@ -46,6 +47,25 @@ const nextBook = () => {
 </template>
 
 <style scoped>
+.label {
+	margin-left: 20px;
+	font-size: 24px;
+	font-weight: bold;
+	position: relative;
+	color: #516b7e;
+	margin-bottom: 12px;
+}
+.label::after {
+	content: "";
+	position: absolute;
+	left: -7px;
+	top: 5px;
+	height: 23px;
+	width: 3px;
+	border-radius: 2px;
+	background-color: #516b7e;
+	border: #5d7d94 1px solid;
+}
 .box {
 	width: 400px;
 	background-color: black;

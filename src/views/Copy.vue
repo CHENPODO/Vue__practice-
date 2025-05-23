@@ -19,6 +19,8 @@ const nextBook = () => {
 </script>
 
 <template>
+	<h1 class="label">每日練習區</h1>
+
 	<!-- 練習 if if-else-if if-else -->
 	<div class="box">
 		<!--基礎版 -->
@@ -44,6 +46,25 @@ const nextBook = () => {
 
 <style scoped>
 /* 基礎版 */
+.label {
+	margin-left: 20px;
+	font-size: 24px;
+	font-weight: bold;
+	position: relative;
+	color: #516b7e;
+	margin-bottom: 12px;
+}
+.label::after {
+	content: "";
+	position: absolute;
+	left: -7px;
+	top: 5px;
+	height: 23px;
+	width: 3px;
+	border-radius: 2px;
+	background-color: #516b7e;
+	border: #5d7d94 1px solid;
+}
 .box {
 	background-color: #c8d5f4;
 	width: 400px;

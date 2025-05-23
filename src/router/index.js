@@ -3,7 +3,7 @@ import Home from "@/components/Home.vue"
 import BMI from "@/views/BMI.vue"
 import TodoSimple from "@/views/TodoSimple.vue"
 import IfElse from "@/views/IfElse.vue"
-import IfElseCopy from "@/views/IfElse copy.vue"
+import Copy from "@/views/Copy.vue"
 
 const routes = [
 	{
@@ -27,9 +27,9 @@ const routes = [
 		component: IfElse,
 	},
 	{
-		path: "/if-else-copy",
-		name: "IfElseCopy",
-		component: IfElseCopy,
+		path: "/copy",
+		name: "Copy",
+		component: Copy,
 	},
 ]
 
