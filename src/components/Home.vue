@@ -5,7 +5,7 @@
 			<RouterLink class="nav-item" to="/bmi">BMI</RouterLink>
 			<RouterLink class="nav-item" to="/todo-simple">ToDo Simple</RouterLink>
 			<RouterLink class="nav-item" to="/if-else">v 指令</RouterLink>
-			<RouterLink class="nav-item" to="if-else-copy">Copy</RouterLink>
+			<RouterLink class="nav-item" to="if-else-copy">每日練習區</RouterLink>
 			<!-- 更多 RouterLink 可以一直加 -->
 		</div>
 		<router-view />
