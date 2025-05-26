@@ -16,6 +16,11 @@ const toggleAllBtn = () => {
 const nextBook = () => {
 	bookIndex_Updated.value = (bookIndex_Updated.value + 1) % bookList.length
 }
+// v-show
+const ans = ref(false) //一開始不顯示
+const ShowAns = () => {
+	ans.value = !ans.value
+}
 </script>
 
 <template>
@@ -41,6 +46,14 @@ const nextBook = () => {
 		<ul v-else>
 			<li class="text-list" v-for="(book, index) in bookList_Updated" :key="index">{{ index + 1 }}.{{ book }}</li>
 		</ul>
+	</div>
+	<div class="box">
+		<p class="text-p">v-show</p>
+		<div class="padding">
+			<p class="text-list">Q: Vue是一個什麼樣的框架?</p>
+			<p v-show="ans" class="text-list">Y: Vue是一套用於構建用戶介面的漸進式框架</p>
+			<button @click="ShowAns" class="bookListBtn">{{ ans ? "隱藏答案" : "顯示答案" }}</button>
+		</div>
 	</div>
 </template>
 
@@ -104,5 +117,8 @@ const nextBook = () => {
 	background-color: #a0a0a0;
 	color: #dddddd;
 	cursor: not-allowed;
+}
+.padding {
+	padding: 25px;
 }
 </style>

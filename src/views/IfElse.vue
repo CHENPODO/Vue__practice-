@@ -15,6 +15,12 @@ const toggleMode = () => {
 const nextBook = () => {
 	showIndex.value = (showIndex.value + 1) % books_2.length
 }
+// :href
+const YtLink = "https://www.youtube.com/"
+const openAns = ref(false)
+const openAnswer = () => {
+	openAns.value = !openAns.value
+}
 </script>
 
 <template>
@@ -43,6 +49,25 @@ const nextBook = () => {
 		<ul v-else>
 			<li v-for="(book, index) in books_2" :key="index">{{ index + 1 }}.{{ book }}</li>
 		</ul>
+	</div>
+	<!-- v-href -->
+	<div class="box">
+		<h2>v-href</h2>
+		<a class="btn" :href="YtLink" target="_blank">youtube</a>
+	</div>
+	<!-- show -->
+	<div class="box">
+		<p>v-show ， HTML 標籤會渲染出來(style:none)</p>
+		<p v-show="books.length === 0">暫無書籍</p>
+		<ul v-show="books.length > 0">
+			<li v-for="(book, index) in books">{{ index + 1 }}. {{ book }}</li>
+		</ul>
+	</div>
+	<div class="box">
+		<p>事件響應</p>
+		<p>問:vue是一種甚麼框架?</p>
+		<p v-show="openAns">答:Vue是一套用於構建用戶介面的漸進式框架</p>
+		<button @click="openAnswer" class="bookBtn">{{ openAns ? "隱藏答案" : "顯示答案" }}</button>
 	</div>
 </template>
 
@@ -86,5 +111,21 @@ const nextBook = () => {
 	background-color: #a0a0a0;
 	color: #dddddd;
 	cursor: not-allowed;
+}
+.btn {
+	flex: 0 0 auto;
+	padding: 10px 20px;
+	background-color: #5d7d94;
+	color: white;
+	border-radius: 8px;
+	text-decoration: none;
+	text-align: center;
+	display: inline-block;
+	transition: 0.3s;
+}
+
+.btn:hover {
+	background-color: #879faa;
+	transform: translateX(-10px);
 }
 </style>
