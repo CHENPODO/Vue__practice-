@@ -1,0 +1,64 @@
+{
+  "brands": [
+    {
+      "id": 102,
+      "name": "Samsung",
+      "status": true,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 103,
+      "name": "Sony",
+      "status": false,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 104,
+      "name": "Microsoft",
+      "status": true,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 105,
+      "name": "Huawei",
+      "status": false,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 106,
+      "name": "Xiaomi",
+      "status": true,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 107,
+      "name": "LG",
+      "status": false,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 108,
+      "name": "ASUS",
+      "status": true,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 109,
+      "name": "Lenovo",
+      "status": true,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 110,
+      "name": "Google",
+      "status": true,
+      "date": "2025-05-27"
+    },
+    {
+      "id": 101,
+      "name": "Apple",
+      "status": true,
+      "date": "2025-05-27"
+    }
+  ]
+}
