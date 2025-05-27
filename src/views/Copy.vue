@@ -1,6 +1,6 @@
 <!-- 每晚練習用 -->
 <script setup>
-import { ref } from "vue"
+import { computed, handleError, reactive, ref, watch } from "vue"
 
 // 基礎版
 const bookList = ["原子習慣", "蛤蟆先生去看心理師", "別對每件事都有反應", "持續買進"]
@@ -20,7 +20,68 @@ const nextBook = () => {
 const ans = ref(false) //一開始不顯示
 const ShowAns = () => {
 	ans.value = !ans.value
+	if (ans.value) startTimer()
 }
+const label = computed(() => {
+	return ans.value ? `隱藏答案  ${countDown.value} ` : "顯示答案"
+})
+// 監聽
+const countDown = ref(5)
+const timer = ref(null)
+const startTimer = () => {
+	countDown.value = 5
+	clearInterval(timer.value)
+
+	timer.value = setInterval(() => {
+		countDown.value -= 1
+		if (countDown.value === 0) {
+			ans.value = false
+			clearInterval(timer.value)
+			timer.value = null
+		}
+	}, 1000)
+}
+watch(ans, (newVal, oldVal) => {
+	// 當來源值變動時要執行的邏輯
+	if (newVal) {
+		startTimer()
+	} else {
+		clearInterval(timer.value)
+		timer.value = null
+	}
+})
+
+// 計算屬性 跟 方法 區別
+const countMethodsAndComputed = ref(0)
+const ski = reactive(["vue3", "React", "vue2", "Ruby"])
+const getVueSki = () => {
+	console.log("調用 getVueSki() 方法")
+	return ski.filter((vue) => vue.includes("vue"))
+}
+const getComputed = computed(() => {
+	console.log("調用 getComputed () 方法")
+	return ski.filter((vue) => vue.includes("vue"))
+})
+const handleClick = () => {
+	countMethodsAndComputed.value += 1
+}
+// 練習監聽器密碼
+const password = ref("")
+const passwordStrength = ref("")
+
+watch(password, (newVal) => {
+	if (newVal === "") {
+		passwordStrength.value = "請輸入密碼"
+	} else if (newVal.length < 6) {
+		passwordStrength.value = "密碼太短"
+	} else if (/[a-zA-Z]/.test(newVal) && /\d/.test(newVal)) {
+		passwordStrength.value = "密碼強度:強"
+	} else if (/^[a-zA-Z]+$/.test(newVal) || /^\d+$/.test(newVal)) {
+		passwordStrength.value = "密碼強度:中"
+	} else {
+		passwordStrength.value = "密碼格式不符"
+	}
+})
 </script>
 
 <template>
@@ -47,13 +108,36 @@ const ShowAns = () => {
 			<li class="text-list" v-for="(book, index) in bookList_Updated" :key="index">{{ index + 1 }}.{{ book }}</li>
 		</ul>
 	</div>
-	<div class="box">
-		<p class="text-p">v-show</p>
+
+	<!-- v-show和使用計算屬性 + 監聽 -->
+	<!-- <div class="box">
+		<p class="text-p">computed屬性切換</p>
 		<div class="padding">
 			<p class="text-list">Q: Vue是一個什麼樣的框架?</p>
 			<p v-show="ans" class="text-list">Y: Vue是一套用於構建用戶介面的漸進式框架</p>
-			<button @click="ShowAns" class="bookListBtn">{{ ans ? "隱藏答案" : "顯示答案" }}</button>
+			<button @click="ShowAns" class="bookListBtn">{{ label }}</button>
 		</div>
+	</div> -->
+	<!-- 監聽器 -->
+	<div class="box">
+		<p class="text-p">練習：密碼強度偵測 (watch)</p>
+		<input v-model="password" type="text" placeholder="請輸入密碼" class="bookListBtn" />
+		<p class="text-list">提示：{{ passwordStrength }}</p>
+	</div>
+
+	<!-- 計算屬性 computed -->
+	<div class="box">
+		<p class="text-p">computed 和 methods 區別</p>
+		<div class="important_msg">
+			<p>computed 本質上有快取機制，只有依賴變化時才會重新執行</p>
+		</div>
+		<div class="box1">
+			<p class="text-list" v-for="vue in getVueSki()">methods:{{ vue }}</p>
+		</div>
+		<div class="box2">
+			<p v-for="v in getComputed">computed:{{ v }}</p>
+		</div>
+		<button class="bookListBtn" @click="handleClick">點擊{{ countMethodsAndComputed }}</button>
 	</div>
 </template>
 

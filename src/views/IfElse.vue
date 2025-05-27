@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue"
+import { computed, ref, watch } from "vue"
 
 const books = ["原子習慣", "最高自律力", "拖延心理學", "逆習慣"]
 const showSingle = ref(false)
@@ -21,6 +21,40 @@ const openAns = ref(false)
 const openAnswer = () => {
 	openAns.value = !openAns.value
 }
+const countDown = ref(5)
+const timer = ref(null)
+
+// computed 計算屬性
+const label = computed(() => {
+	return openAns.value ? `隱藏答案 ${countDown.value}` : "顯示答案"
+})
+//倒數計時
+const startTimer = () => {
+	countDown.value = 5
+	clearInterval(timer.value)
+
+	timer.value = setInterval(() => {
+		countDown.value -= 1
+		if (timer.value === 0) {
+			openAns.value = false
+			clearInterval(timer.value)
+			countDown.value = null
+		} else {
+			clearInterval(timer.value)
+			timer.value = null
+		}
+	}, 1000)
+}
+// watch
+watch(openAns, (newVal, oldVal) => {
+	// 當來源值變動時要執行的邏輯
+	if (newVal) {
+		startTimer()
+	} else {
+		clearInterval(timer.value)
+		timer.value = null
+	}
+})
 </script>
 
 <template>
@@ -67,11 +101,11 @@ const openAnswer = () => {
 		<p>事件響應</p>
 		<p>問:vue是一種甚麼框架?</p>
 		<p v-show="openAns">答:Vue是一套用於構建用戶介面的漸進式框架</p>
-		<button @click="openAnswer" class="bookBtn">{{ openAns ? "隱藏答案" : "顯示答案" }}</button>
+		<button @click="openAnswer" class="bookBtn">{{ label }}</button>
 	</div>
 </template>
 
-<style scoped>
+<style>
 .label {
 	margin-left: 20px;
 	font-size: 24px;

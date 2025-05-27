@@ -4,6 +4,7 @@ import BMI from "@/views/BMI.vue"
 import TodoSimple from "@/views/TodoSimple.vue"
 import IfElse from "@/views/IfElse.vue"
 import Copy from "@/views/Copy.vue"
+import Computed_methods from "@/views/Computed_methods.vue"
 
 const routes = [
 	{
@@ -25,6 +26,11 @@ const routes = [
 		path: "/if-else",
 		name: "IfElse",
 		component: IfElse,
+	},
+	{
+		path: "/computed_methods",
+		name: "Computed_methods",
+		component: Computed_methods,
 	},
 	{
 		path: "/copy",
