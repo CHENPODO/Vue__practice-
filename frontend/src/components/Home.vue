@@ -8,7 +8,7 @@
 			<RouterLink class="nav-item" to="copy">每日練習區</RouterLink>
 			<RouterLink class="nav-item" to="/computed_methods">計算屬性方法差異</RouterLink>
 			<RouterLink class="nav-item" to="/brand">品牌列表</RouterLink>
-
+			<RouterLink class="nav-item" to="/transform">CSS 動畫練習</RouterLink>
 			<!-- 更多 RouterLink 可以一直加 -->
 		</div>
 		<router-view />

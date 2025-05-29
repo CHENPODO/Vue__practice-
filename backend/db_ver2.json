@@ -1,0 +1,8 @@
+{
+	"inkBook": [
+		{ "id": 1, "name": "Kobo Clara BW", "inches": "6 吋", "storage": "8GB", "priceNTD": 4990 },
+		{ "id": 2, "name": "Kobo Libra Colour", "inches": "7 吋", "storage": "32GB", "priceNTD": 8990 },
+		{ "id": 3, "name": "Kobo Clara Colour", "inches": "6 吋", "storage": "8GB", "priceNTD": 7990 },
+		{ "id": 4, "name": "Kobo Elipsa 2E", "inches": "10.3 吋", "storage": "32GB", "priceNTD": 14990 }
+	]
+}

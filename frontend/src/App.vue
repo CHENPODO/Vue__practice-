@@ -9,7 +9,7 @@ import { RouterLink } from "vue-router"
 	</div>
 </template>
 
-<style>
+<style scoped>
 .title {
 	font-weight: 700;
 	font-size: x-large;

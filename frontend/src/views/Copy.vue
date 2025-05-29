@@ -1,6 +1,6 @@
 <!-- 每晚練習用 -->
 <script setup>
-import { computed, handleError, reactive, ref, watch } from "vue"
+import { computed, handleError, onMounted, reactive, ref, watch } from "vue"
 
 // 基礎版
 const bookList = ["原子習慣", "蛤蟆先生去看心理師", "別對每件事都有反應", "持續買進"]
@@ -82,6 +82,17 @@ watch(password, (newVal) => {
 		passwordStrength.value = "密碼格式不符"
 	}
 })
+
+// 引入axios
+import axios from "axios"
+
+const inkBooks = ref([])
+
+onMounted(async () => {
+	const res = await axios.get("http://localhost:3000/inkBook")
+	inkBooks.value = res.data
+	// console.log(res.data)
+})
 </script>
 
 <template>
@@ -110,14 +121,14 @@ watch(password, (newVal) => {
 	</div>
 
 	<!-- v-show和使用計算屬性 + 監聽 -->
-	<!-- <div class="box">
+	<div class="box">
 		<p class="text-p">computed屬性切換</p>
 		<div class="padding">
 			<p class="text-list">Q: Vue是一個什麼樣的框架?</p>
 			<p v-show="ans" class="text-list">Y: Vue是一套用於構建用戶介面的漸進式框架</p>
 			<button @click="ShowAns" class="bookListBtn">{{ label }}</button>
 		</div>
-	</div> -->
+	</div>
 	<!-- 監聽器 -->
 	<div class="box">
 		<p class="text-p">練習：密碼強度偵測 (watch)</p>
@@ -138,6 +149,77 @@ watch(password, (newVal) => {
 			<p v-for="v in getComputed">computed:{{ v }}</p>
 		</div>
 		<button class="bookListBtn" @click="handleClick">點擊{{ countMethodsAndComputed }}</button>
+	</div>
+	<div class="box">
+		<h1 class="text-p">前後端串接</h1>
+		<table class="inkBooks-table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>型號</th>
+					<th>吋</th>
+					<th>容量</th>
+					<th>價格</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr v-for="ink in inkBooks" :key="ink.id">
+					<td>{{ ink.id }}</td>
+					<td>{{ ink.name }}</td>
+					<td>{{ ink.inches }}</td>
+					<td>{{ ink.storage }}</td>
+					<td>{{ ink.priceNTD }}元</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="box">
+		<p class="text-p">下拉選單</p>
+		<div class="nav-container">
+			<!-- 資料夾1 -->
+			<div class="nav-item">
+				<ul>
+					<a href="#">資料夾1</a>
+				</ul>
+				<div class="selectP">
+					<a href="#">Vue 練習</a>
+					<a href="#">JS 功能</a>
+					<a href="#">CSS 排版</a>
+				</div>
+			</div>
+
+			<!-- 資料夾2 -->
+			<div class="nav-item">
+				<ul>
+					<a href="#">資料夾2</a>
+				</ul>
+				<div class="selectP">
+					<a href="#">後端連接</a>
+					<a href="#">API 測試</a>
+				</div>
+			</div>
+
+			<!-- 資料夾3 -->
+			<div class="nav-item">
+				<ul>
+					<a href="#">資料夾3</a>
+				</ul>
+				<div class="selectP">
+					<a href="#">生活紀錄</a>
+					<a href="#">每日練習</a>
+				</div>
+			</div>
+			<div class="nav-item">
+				<ul>
+					<a href="#">讓我上岸</a>
+				</ul>
+				<div class="selectP">
+					<a href="#">持續投履歷</a>
+					<a href="#">研究所</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -204,5 +286,65 @@ watch(password, (newVal) => {
 }
 .padding {
 	padding: 25px;
+}
+
+/* 前後端交互 */
+.inkBooks-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.inkBooks-table th {
+	background-color: #f5f5f5;
+	color: #333;
+}
+.inkBooks-table tr,
+.inkBooks-table td {
+	border: #516b7e 1px solid;
+	text-align: center;
+}
+.inkBooks-table td:nth-child(even) {
+	background-color: #312a727d;
+}
+.inkBooks-table td:nth-child(odd) {
+	background-color: #de9595;
+}
+/* 下拉選單 */
+.nav-container {
+	display: flex;
+	gap: 10px;
+	background-color: #a3d2f4;
+}
+.nav-item {
+	position: relative;
+}
+.nav-item ul {
+	border-radius: 3px;
+	padding: 5px;
+	cursor: pointer;
+}
+.nav-item ul a:hover {
+	color: #efefef;
+	background-color: #82a9c4;
+}
+.selectP {
+	display: none;
+	background-color: #ebe7e7;
+	color: #333;
+	position: absolute;
+	width: 100%;
+	top: 55px;
+	left: 10px;
+	padding: 10px;
+}
+.selectP a {
+	background-color: #fff;
+	padding: 5px;
+	display: block;
+}
+.selectP a:hover {
+	background-color: #bdbbbb;
+}
+.nav-item:hover .selectP {
+	display: block;
 }
 </style>

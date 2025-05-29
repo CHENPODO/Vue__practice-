@@ -29,8 +29,8 @@ onMounted(async () => {
 							<td>{{ brand.id }}</td>
 							<td>{{ brand.name }}</td>
 							<td>
-								<button>編輯</button>
-								<button>刪除</button>
+								<button class="">編輯</button>
+								<button class="">刪除</button>
 							</td>
 						</tr>
 					</tbody>

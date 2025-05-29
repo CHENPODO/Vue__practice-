@@ -6,6 +6,7 @@ import IfElse from "@/views/IfElse.vue"
 import Copy from "@/views/Copy.vue"
 import Computed_methods from "@/views/Computed_methods.vue"
 import Brand from "@/views/Brand.vue"
+import Transform from "@/views/Transform.vue"
 
 const routes = [
 	{
@@ -37,6 +38,11 @@ const routes = [
 		path: "/brand",
 		name: "Brand",
 		component: Brand,
+	},
+	{
+		path: "/transform",
+		name: "Transform",
+		component: Transform,
 	},
 	{
 		path: "/copy",
