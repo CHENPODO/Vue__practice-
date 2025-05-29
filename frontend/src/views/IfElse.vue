@@ -35,13 +35,10 @@ const startTimer = () => {
 
 	timer.value = setInterval(() => {
 		countDown.value -= 1
-		if (timer.value === 0) {
+		if (countDown.value === 0) {
 			openAns.value = false
 			clearInterval(timer.value)
 			countDown.value = null
-		} else {
-			clearInterval(timer.value)
-			timer.value = null
 		}
 	}, 1000)
 }
