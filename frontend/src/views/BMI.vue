@@ -108,6 +108,7 @@ h2 {
 	justify-content: center;
 	align-items: center;
 }
+
 .left-box {
 	margin: 13px 8px;
 	padding: 10px;
