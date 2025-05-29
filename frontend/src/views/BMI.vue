@@ -25,7 +25,7 @@ onMounted(() => {
 	<div class="container">
 		<div class="screen">
 			<div class="background">
-				<div class="box">
+				<div class="box1">
 					<div class="left-box">
 						<span class="text">身高:</span>
 						<input type="number" v-model.number="height" placeholder="m" />
@@ -101,7 +101,7 @@ h2 {
 	width: 400px;
 	border-radius: 10px;
 }
-.box {
+.box1 {
 	display: flex;
 	margin: 0 auto;
 	flex-direction: column;
