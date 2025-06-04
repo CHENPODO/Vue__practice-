@@ -7,6 +7,7 @@ import Copy from "@/views/Copy.vue"
 import Computed_methods from "@/views/Computed_methods.vue"
 import Brand from "@/views/Brand.vue"
 import Transform from "@/views/Transform.vue"
+import ClassStudy from "@/views/classStudy.vue"
 
 const routes = [
 	{
@@ -43,6 +44,11 @@ const routes = [
 		path: "/transform",
 		name: "Transform",
 		component: Transform,
+	},
+	{
+		path: "/study",
+		name: "study",
+		component: ClassStudy,
 	},
 	{
 		path: "/copy",
