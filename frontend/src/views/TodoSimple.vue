@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from "vue"
+import { ref, watch, onBeforeUnmount } from "vue"
+import { debounce } from "lodash"
 
 const playList = ref(["Tell Me Why", "讓我上岸", "MBTI", "Shape of You", "Blinding Lights"])
 const searchTerm = ref("")
@@ -22,14 +23,24 @@ const list = [
 	},
 ]
 
-const search = () => {
+const isUnmounted = ref(false)
+// debounce 包住搜尋函式（延遲 500ms 才執行）
+const search = debounce(() => {
 	const keyWord = searchTerm.value.toLowerCase()
 	if (!keyWord) {
 		filterSong.value = playList.value
 	} else {
 		filterSong.value = playList.value.filter((song) => song.toLowerCase().includes(keyWord))
 	}
-}
+}, 500)
+//watch 使用者輸入，自動觸發 debounce 搜尋
+watch(searchTerm, () => {
+	search()
+})
+onBeforeUnmount(() => {
+	isUnmounted.value = true
+	search.cancel()
+})
 </script>
 <template>
 	<h1 class="label">搜尋歌曲</h1>
@@ -38,7 +49,7 @@ const search = () => {
 			<input class="inputKeyWord" type="text" v-model="searchTerm" placeholder="請輸入關鍵字" />
 			<button @click="search">搜尋</button>
 			<ul>
-				<li v-for="(song, index) in filterSong" :key="index">{{ song }}</li>
+				<li class="text" v-for="(song, index) in filterSong" :key="index">{{ song }}</li>
 			</ul>
 		</div>
 	</div>
@@ -50,7 +61,7 @@ const search = () => {
 	</div>
 	<div class="mb">
 		<p>遍歷數組</p>
-		<li v-for="todo in list">
+		<li v-for="todo in list" :key="todo.content">
 			<input type="checkbox" :checked="todo.complete" />
 			{{ todo.content }}
 		</li>
@@ -101,5 +112,8 @@ button {
 	margin-left: 5px;
 	border: none;
 	background-color: rgb(203, 237, 226);
+}
+.text {
+	color: #516b7e;
 }
 </style>
